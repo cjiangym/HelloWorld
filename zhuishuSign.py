@@ -14,12 +14,13 @@ rootPath = os.path.split(curPath)[0]
 sys.path.append(rootPath)
 
 class ZhuishuSign(unittest.TestCase):
+    path = curPath + "\\cases.xls"
+    xlx_data = xlrd.open_workbook (path)
+    # 取第x个表格
+    sheet = xlx_data.sheet_by_index (0)
 
     def setUp(self):
-        path = curPath + "\\cases.xls"
-        xlx_data = xlrd.open_workbook (path)
-        # 取第x个表格
-        self.sheet = xlx_data.sheet_by_index(0)
+        pass
 
     def tearDown(self):
         pass
@@ -90,3 +91,7 @@ class ZhuishuSign(unittest.TestCase):
         response = requests.post(url,params,verify=False)
         result = json.loads(response.content)
         return  result
+
+if __name__ == '__main__':
+    test = ZhuishuSign()
+    test.test_sign()
