@@ -37,6 +37,12 @@ class ZhuishuSign(unittest.TestCase):
         try:
             self.login_result = self.login(index)
             self.judge_result = self.judgeSign(index)
+            params = {
+                "token": self.login_result["token"],
+                "version": 2,
+                "activityId": self.judge_result["activityId"],
+                "type": 2
+            }
         except:
             params = {
                 "token": self.sheet.cell_value(index,7),
@@ -45,12 +51,6 @@ class ZhuishuSign(unittest.TestCase):
                 "type": 2
             }
         else:
-            params = {
-            "token": self.login_result["token"],
-            "version": 2,
-            "activityId": self.judge_result["activityId"],
-            "type": 2
-            }
             token = self.login_result["token"]
             activity_id = self.judge_result["activityId"]
             #wbk = xlwt.Workbook()
