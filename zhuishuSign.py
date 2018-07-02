@@ -15,9 +15,9 @@ sys.path.append(rootPath)
 
 class ZhuishuSign(unittest.TestCase):
     path = curPath + "\\cases.xls"
-    xlx_data = xlrd.open_workbook (path)
+    xlx_data = xlrd.open_workbook(path)
     # 取第x个表格
-    sheet = xlx_data.sheet_by_index (0)
+    sheet = xlx_data.sheet_by_index(0)
 
     def setUp(self):
         pass
@@ -26,7 +26,7 @@ class ZhuishuSign(unittest.TestCase):
         pass
 
     def test_sign(self):
-        total = 12
+        total = 17
         for index in range(total):
             print(index)
             self.sign(index)
@@ -78,14 +78,15 @@ class ZhuishuSign(unittest.TestCase):
         return result
 
     def login(self,index):
-        url = "http://api01pbmp.zhuishushenqi.com/user/login"
+        url = "http://api.zhuishushenqi.com/user/login"
         params = {
             "channelName" :self.sheet.cell_value(index,1),
             "platform_uid" :self.sheet.cell_value(index,2),
             "promoterId" :self.sheet.cell_value(index,3),
             "platform_token":self.sheet.cell_value(index,4),
             "version" :self.sheet.cell_value(index,5),
-            "platform_code":self.sheet.cell_value(index,6)
+            "platform_code":self.sheet.cell_value(index,6),
+            "packageName":"com.ushaqi.zhuishushenqi"
 
         }
         response = requests.post(url,params,verify=False)
