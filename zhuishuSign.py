@@ -26,7 +26,7 @@ class ZhuishuSign(unittest.TestCase):
         pass
 
     def test_sign(self):
-        total = 17
+        total = 13
         for index in range(total):
             print(index)
             self.sign(index)
